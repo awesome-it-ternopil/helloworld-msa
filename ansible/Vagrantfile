@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+     config.vm.box = "bento/centos-7.3"
+     # Customize the amount of memory on the VM:
+     vb.memory = "2048"
+     vb.cpus = 1
+   end
+    config.vm.define "vgt__openshift_server", primary: true, autostart: true do |vgt__openshift_server|
+       # ...
+       vgt__openshift_server.vm.network "public_network", bridge: "enp0s31f6" ip: "10.20.10.210"
+       config.vm.provider :virtualbox do |vb|
+               vb.customize ["modifyvm", :id, "--memory", "8000"]
+               vb.customize ["modifyvm", :id, "--cpus", "2"]
+       end
+    end
+
+end
