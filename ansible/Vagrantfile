@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
                vb.customize ["modifyvm", :id, "--cpus", "2"]
        end
        vgt__openshift_server.vm.provision "shell", inline: "sudo swapoff -a"
+       vgt__openshift_server.vm.provision "shell", inline: "ip route add 0.0.0.0/0 via 10.20.10.254"
     end
 
 end
